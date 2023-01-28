@@ -1,5 +1,4 @@
 package codigo;
-
 public enum Tokens {
     Identificador,
     Reservadas,
@@ -10,6 +9,7 @@ public enum Tokens {
     Multiplicacao,
     Divisao,
     Igual
+  
     
 
 }
