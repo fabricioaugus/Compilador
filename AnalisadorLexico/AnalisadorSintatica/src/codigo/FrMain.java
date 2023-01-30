@@ -37,7 +37,7 @@ public class FrMain extends javax.swing.JFrame {
         
         String expr = (String) txtResultado.getText();
         Lexer lexer = new Lexer(new StringReader(expr));
-        String resultado = "LINEA " + cont + "\t\tSIMBOLO\n";
+        String resultado = "LINHA" + cont +"\t|"+ "\t|SIMBOLO\n";
         while (true) {
             Tokens token = lexer.yylex();
             if (token == null) {
@@ -45,18 +45,18 @@ public class FrMain extends javax.swing.JFrame {
                 return;
             }
             switch (token) {
-                case Linea:
+                case Linha:
                     cont++;
-                    resultado += "LINEA " + cont + "\n";
+                    resultado += "LINHA-> \t" + cont + "\n";
                     break;
-                case Comillas:
-                    resultado += "  <Comillas>\t\t" + lexer.lexeme + "\n";
+                case Aspas:
+                    resultado += "  <Aspas>\t" + lexer.lexeme + "\n";
                     break;
-                case Cadena:
-                    resultado += "  <Tipo de dato>\t" + lexer.lexeme + "\n";
+                case cadeiraString:
+                    resultado += "  <Tipo de dado String>\t" + lexer.lexeme + "\n";
                     break;
-                case T_dato:
-                    resultado += "  <Tipo de dato>\t" + lexer.lexeme + "\n";
+                case T_dado:
+                    resultado += "  <Tipo de dado>\t" + lexer.lexeme + "\n";
                     break;
                 case If:
                     resultado += "  <Reservada if>\t" + lexer.lexeme + "\n";
@@ -71,22 +71,22 @@ public class FrMain extends javax.swing.JFrame {
                     resultado += "  <Reservada while>\t" + lexer.lexeme + "\n";
                     break;
                 case For:
-                    resultado += "  <Reservada while>\t" + lexer.lexeme + "\n";
+                    resultado += "  <Reservada for>\t" + lexer.lexeme + "\n";
                     break;
                 case Igual:
                     resultado += "  <Operador igual>\t" + lexer.lexeme + "\n";
                     break;
-                case Suma:
-                    resultado += "  <Operador suma>\t" + lexer.lexeme + "\n";
+                case Soma:
+                    resultado += "  <Operador soma>\t" + lexer.lexeme + "\n";
                     break;
-                case Resta:
-                    resultado += "  <Operador resta>\t" + lexer.lexeme + "\n";
+                case Resto:
+                    resultado += "  <Operador resto>\t" + lexer.lexeme + "\n";
                     break;
-                case Multiplicacion:
-                    resultado += "  <Operador multiplicacion>\t" + lexer.lexeme + "\n";
+                case Multiplicacao:
+                    resultado += "  <Operador multiplicacao>\t" + lexer.lexeme + "\n";
                     break;
-                case Division:
-                    resultado += "  <Operador division>\t" + lexer.lexeme + "\n";
+                case Divisao:
+                    resultado += "  <Operador divisao>\t" + lexer.lexeme + "\n";
                     break;
                 case Op_logico:
                     resultado += "  <Operador logico>\t" + lexer.lexeme + "\n";
@@ -97,38 +97,38 @@ public class FrMain extends javax.swing.JFrame {
                 case Op_relacional:
                     resultado += "  <Operador relacional>\t" + lexer.lexeme + "\n";
                     break;
-                case Op_atribucion:
-                    resultado += "  <Operador atribucion>\t" + lexer.lexeme + "\n";
+                case Op_atribuicao:
+                    resultado += "  <Operador atribuicao>\t" + lexer.lexeme + "\n";
                     break;
                 case Op_booleano:
                     resultado += "  <Operador booleano>\t" + lexer.lexeme + "\n";
                     break;
-                case Parentesis_a:
-                    resultado += "  <Parentesis de apertura>\t" + lexer.lexeme + "\n";
+                case Paren_A:
+                    resultado += "  <Abertura Parentes>\t" + lexer.lexeme + "\n";
                     break;
-                case Parentesis_c:
-                    resultado += "  <Parentesis de cierre>\t" + lexer.lexeme + "\n";
+                case Paren_F:
+                    resultado += "  <Fechamento Parentes>\t" + lexer.lexeme + "\n";
                     break;
-                case Llave_a:
-                    resultado += "  <Llave de apertura>\t" + lexer.lexeme + "\n";
+                case Chave_A:
+                    resultado += "  <Abertura Chave>\t" + lexer.lexeme + "\n";
                     break;
-                case Llave_c:
-                    resultado += "  <Llave de cierre>\t" + lexer.lexeme + "\n";
+                case Chave_F:
+                    resultado += "  <Fechamento Chave>\t" + lexer.lexeme + "\n";
                     break;
-                case Corchete_a:
-                    resultado += "  <Corchete de apertura>\t" + lexer.lexeme + "\n";
+                case Colchete_A:
+                    resultado += "  <Abertura Colchete>\t" + lexer.lexeme + "\n";
                     break;
-                case Corchete_c:
-                    resultado += "  <Corchete de cierre>\t" + lexer.lexeme + "\n";
+                case Colchete_F:
+                    resultado += "  <Fechamento Colchete>\t" + lexer.lexeme + "\n";
                     break;
-                case Main:
-                    resultado += "  <Reservada main>\t" + lexer.lexeme + "\n";
+                case Begin:
+                    resultado += "  <Reservada Begin>\t" + lexer.lexeme + "\n";
                     break;
-                case P_coma:
-                    resultado += "  <Punto y coma>\t" + lexer.lexeme + "\n";
+                case Ponto_V:
+                    resultado += "  <Ponto e vergula>\t" + lexer.lexeme + "\n";
                     break;
                 case Identificador:
-                    resultado += "  <Identificador>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <Identificador>\t" + lexer.lexeme + "\n";
                     break;
                 case Numero:
                     resultado += "  <Numero>\t\t" + lexer.lexeme + "\n";
