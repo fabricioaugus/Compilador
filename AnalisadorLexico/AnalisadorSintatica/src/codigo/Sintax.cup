@@ -54,8 +54,6 @@ DECLARACAO ::=
     cadeiraString Identificador Op_atribuicao Aspas Identificador Aspas Ponto_V |
     cadeiraString Identificador Igual Aspas Identificador Aspas Ponto_V
 ;
-IF ::= If Paren_A SENTENCA_BOOLEANA Paren_F Chave_A SENTENCA Chave_F
-;
 SENTENCA_BOOLEANA ::= 
     Op_booleano | 
     Identificador Op_relacional Op_booleano |
@@ -63,21 +61,27 @@ SENTENCA_BOOLEANA ::=
     Identificador Op_relacional Identificador |
     Identificador Op_relacional  Aspas  Aspas |
     Identificador Op_relacional  Aspas Identificador  Aspas
+
 ;
+
+IF ::= If Paren_A SENTENCA_BOOLEANA Paren_F Chave_A SENTENCA Chave_F
+;
+
 IF_ELSE ::= If Paren_A SENTENCA_BOOLEANA Paren_F Chave_A SENTENCA Chave_F Else Chave_A SENTENCA Chave_F
 ;
 WHILE ::= While Paren_A SENTENCA_BOOLEANA Paren_F Chave_A SENTENCA Chave_F
 ;
 DO_WHILE ::= Do Chave_A SENTENCA Chave_F While Paren_A SENTENCA_BOOLEANA Paren_F Ponto_V
 ;
-FOR ::= For Paren_A SENTENCA_FOR Paren_F Chave_A SENTENCA Chave_F
-;
-SENTENCA_FOR ::=
-    T_dado Identificador Igual Numero Ponto_V SENTENCA_BOOLEANA Ponto_V DECLARACAO_FOR |
-    Identificador Igual Numero Ponto_V SENTENCA_BOOLEANA Ponto_V DECLARACAO_FOR
-;
 DECLARACAO_FOR ::= 
     Identificador Op_atribuicao Numero |
     Identificador Op_incremento | 
     Op_incremento Identificador
 ;
+SENTENCA_FOR ::=
+    T_dado Identificador Igual Numero Ponto_V SENTENCA_BOOLEANA Ponto_V DECLARACAO_FOR |
+    Identificador Igual Numero Ponto_V SENTENCA_BOOLEANA Ponto_V DECLARACAO_FOR
+;
+FOR ::= For Paren_A SENTENCA_FOR Paren_F Chave_A SENTENCA Chave_F
+;
+
