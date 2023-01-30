@@ -69,10 +69,8 @@ IF ::= If Paren_A SENTENCA_BOOLEANA Paren_F Chave_A SENTENCA Chave_F
 
 IF_ELSE ::= If Paren_A SENTENCA_BOOLEANA Paren_F Chave_A SENTENCA Chave_F Else Chave_A SENTENCA Chave_F
 ;
-WHILE ::= While Paren_A SENTENCA_BOOLEANA Paren_F Chave_A SENTENCA Chave_F
-;
-DO_WHILE ::= Do Chave_A SENTENCA Chave_F While Paren_A SENTENCA_BOOLEANA Paren_F Ponto_V
-;
+
+
 DECLARACAO_FOR ::= 
     Identificador Op_atribuicao Numero |
     Identificador Op_incremento | 
@@ -83,5 +81,11 @@ SENTENCA_FOR ::=
     Identificador Igual Numero Ponto_V SENTENCA_BOOLEANA Ponto_V DECLARACAO_FOR
 ;
 FOR ::= For Paren_A SENTENCA_FOR Paren_F Chave_A SENTENCA Chave_F
+;
+
+DO_WHILE ::= Do Chave_A SENTENCA Chave_F While Paren_A SENTENCA_BOOLEANA Paren_F Ponto_V
+;
+
+WHILE ::= While Paren_A SENTENCA_BOOLEANA Paren_F Chave_A SENTENCA Chave_F
 ;
 

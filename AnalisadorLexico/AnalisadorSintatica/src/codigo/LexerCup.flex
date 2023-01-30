@@ -30,7 +30,7 @@ espaco=[ ,\t,\r,\n]+
 ( "\"" ) {return new Symbol(sym.Aspas, yychar, yyline, yytext());}
 
 /* Tipos de dados */
-( byte | int | char | long | float | double ) {return new Symbol(sym.T_dado, yychar, yyline, yytext());}
+( byte | int | char | long | float | double | bool) {return new Symbol(sym.T_dado, yychar, yyline, yytext());}
 
 /* Tipo de dato String */
 ( String ) {return new Symbol(sym.cadeiraString, yychar, yyline, yytext());}

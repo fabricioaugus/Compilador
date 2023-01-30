@@ -24,7 +24,7 @@ espaco=[ ,\t,\r]+
 ( "\"" ) {lexeme=yytext(); return Aspas;}
 
 /* Tipos de dados */
-( byte | int | char | long | float | double ) {lexeme=yytext(); return T_dado;}
+( byte | int | char | long | float | double | bool ) {lexeme=yytext(); return T_dado;}
 
 /* Tipo de dado String */
 ( String ) {lexeme=yytext(); return cadeiraString;}
