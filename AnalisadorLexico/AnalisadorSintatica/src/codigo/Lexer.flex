@@ -68,7 +68,7 @@ espaco=[ ,\t,\r]+
 /* Operadores de Atribuição */
 ( "+=" | "-="  | "*=" | "/=" | "%=" ) {lexeme = yytext(); return Op_atribuicao;}
 
-/* Operadores Incremento y decremento */
+/* Operadores Incremento e decremento */
 ( "++" | "--" ) {lexeme = yytext(); return Op_incremento;}
 
 /* Operadores Booleanos */
@@ -93,7 +93,7 @@ espaco=[ ,\t,\r]+
 ( "]" ) {lexeme = yytext(); return Corchete_F;}
 
 /* Marcador de inicio de algoritmo */
-( "main" ) {lexeme=yytext(); return Begin;}
+( "begin" ) {lexeme=yytext(); return Begin;}
 
 /* Ponto e Virgula */
 ( ";" ) {lexeme=yytext(); return Ponto_V;}

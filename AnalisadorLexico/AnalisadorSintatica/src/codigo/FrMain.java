@@ -49,6 +49,9 @@ public class FrMain extends javax.swing.JFrame {
                     cont++;
                     resultado += "LINHA-> \t" + cont + "\n";
                     break;
+                     case Begin:
+                    resultado += "  <Reservada Begin>\t" + lexer.lexeme + "\n";
+                    break;
                 case Aspas:
                     resultado += "  <Aspas>\t" + lexer.lexeme + "\n";
                     break;
@@ -120,9 +123,6 @@ public class FrMain extends javax.swing.JFrame {
                     break;
                 case Colchete_F:
                     resultado += "  <Fechamento Colchete>\t" + lexer.lexeme + "\n";
-                    break;
-                case Begin:
-                    resultado += "  <Reservada Begin>\t" + lexer.lexeme + "\n";
                     break;
                 case Ponto_V:
                     resultado += "  <Ponto e vergula>\t" + lexer.lexeme + "\n";
