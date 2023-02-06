@@ -1,10 +1,11 @@
 package TrabalhoRegex;
+
 import java.util.Scanner;
 
 /*
 ___________________________________________
 |    Código de referência: Cidade/Região  |
-|    Centro-oeste        201 até 299      |
+|    Centro-oeste        200 até 299      |
 |    Nordeste            300 até 399      |
 |    Norte               400 até 499      |
 |    Sudeste             001 até 099      |
@@ -41,6 +42,9 @@ EXEMPLOS DE CODIGOS
 */
 public class TrabalhoRegex {
     public static void main(String[] args) {
+
+        ExibirCaracteristicaProjeto();
+
         System.out.println("Entrar com codigo de barra do Pacote: ");
         Scanner scan = new Scanner(System.in);
         String codigoLido = scan.next();
@@ -53,9 +57,9 @@ public class TrabalhoRegex {
                 .valueOf(String.valueOf(RegioesInexistenteDestino.matches(regioesInvalidasDestino)));
         if (RegiaoQueNaoExiste || RegiaoQueNaoExisteDestino) {
             System.out.println("Esse codigo de região origem pode não existir   -> "
-                    + RegioesInexistente + ".\n Esse codigo de região destino pode não existir   -> "
+                    + RegioesInexistente + ".\n Esse codigo de região destino pode não existir-> "
                     + RegioesInexistenteDestino);
-            System.out.println("O intervalo valido 0 até 499 para origem e destino");
+            System.out.println("O intervalo valido [1,499] para origem e destino");
         }
 
         origemCentroOeste(codigoLido);
@@ -80,10 +84,41 @@ public class TrabalhoRegex {
         System.out.println("Código do vendedor do produto: " + codigoDoVendedor);
         tipoDeProduto(codigoLido);
         scan.close();
+        RegrasDoProjeto();
     }
 
+    private static void RegrasDoProjeto() {
+        System.out.println("\t\t_Regra das Regiões/Cidade ORIGEM e DESTINO_\t\t\n"
+                + "\t|    Código de referência: Cidade/Região  |\t\n"
+                + "\t|    Sudeste             001 até 099      |\t\n"
+                + "\t|    Sul                 100 até 199      |\t\n"
+                + "\t|    Centro-oeste        200 até 299      |\t\n"
+                + "\t|    Nordeste            300 até 399      |\t\n"
+                + "\t|    Norte               400 até 499      |\t\n"
+                + "\t|_________________________________________|\t\n");
 
-    // olhar isso depois comeca em 201
+        System.out.println(" \t\t_Regras Para Tipos de Produtos_\t\t\n"
+                + "\t\t|    Tipo do Produto Código |\t\t\n"
+                + "\t\t|       Jóias       001     |\t\t\n"
+                + "\t\t|       Livros      111     |\t\t\n"
+                + "\t\t|       Eletrônicos 333     |\t\t\n"
+                + "\t\t|       Bebidas     555     |\t\t\n"
+                + "\t\t|       Brinquedos  888     |\t\t\n"
+                + "\t\t|___________________________|\t\t\n");
+        System.out.println("Observações: O COD. VENDEDOR 367 está inativo e só aceita o intervalo [1,499] de ORIGEM e DESTINO.");
+                
+    }
+
+    private static void ExibirCaracteristicaProjeto() {
+        System.out.printf("\t\t-- Caracteristica Do Projeto --\t\t\n"
+                + "Composto por 15 Caracteres e Todos Numero.\n"
+                + "O intervalo [1,3] dos Caracteres representa a ORIGEM do produto.\n"
+                + "O intervalo [4,6]dos Caracteres representa o DESTINO do produto.\n"
+                + "O intervalo [7,9] dos Caracteres representa o COD. da TRANSPORTADORA.\n"
+                + "O intervalo [10,12]dos Caracteres representa o COD. do VENDEDOR. \n"
+                + "O intervalo [13,15]dos Caracteres representa o Tipo de Produto. \n");
+    }
+
     public static void origemCentroOeste(String codigoLido) {
         String regraParaCentroOeste = "(2[0-9][0-9])";
         String novoSubstring = codigoLido.substring(0, 3);
@@ -115,10 +150,9 @@ public class TrabalhoRegex {
 
     }
 
-    // olhar isso depois comeca em 001
     public static void origemSudeste(String codigoLido) {
 
-        String regraParaSudeste = "(0[0-9][0-9])";
+        String regraParaSudeste = "(0[0-9][1-9])";
         String novoSubstring = codigoLido.substring(0, 3);
         Boolean validacaoSudeste = Boolean.valueOf(String.valueOf(novoSubstring.matches(regraParaSudeste)));
         if (validacaoSudeste) {
@@ -169,10 +203,9 @@ public class TrabalhoRegex {
 
     }
 
-    // olhar isso depois comeca em 001
     public static void destinoSudeste(String codigoLido) {
 
-        String regraParaSudeste = "(0[0-9][0-9])";
+        String regraParaSudeste = "(0[0-9][1-9])";
         String novoSubstring = codigoLido.substring(3, 6);
         Boolean validacaoSudeste = Boolean.valueOf(String.valueOf(novoSubstring.matches(regraParaSudeste)));
         if (validacaoSudeste) {
