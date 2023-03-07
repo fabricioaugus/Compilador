@@ -83,41 +83,43 @@ public class FrMain extends javax.swing.JFrame {
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(0, 367, Short.MAX_VALUE)
-                        .addComponent(txtEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnAnalizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
+                        .addComponent(btnAnalizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnAnalizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(txtEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnAnalizar)
+                        .addGap(16, 16, 16)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -149,18 +151,95 @@ public class FrMain extends javax.swing.JFrame {
                     txtResultado.setText(resultado);
                     return;
                 }
-                switch (tokens) {
-                    case ERROR:
-                        resultado += "\tesse simbolo não existe\t\n";
-                        break;
-                    case Identificador: case Reservadas:  case  Numero:
-                        resultado += lexer.lexeme +"\tÉ um token tipo:\t" + tokens + "\n";
-                        break;
-                   
-                    default:
-                        resultado += "\tTokens:\t" + tokens + "\n";
-                        break;
-                }
+                int cont = 1;
+               switch (tokens) {
+                case Linha:
+                    cont++;
+                    resultado += "LINHA-> \t" + cont + "\n";
+                    break;
+                     case Begin:
+                    resultado += "  <Reservada Begin>\t" + lexer.lexeme + "\n";
+                    break;
+                case Aspas:
+                    resultado += "  <Aspas>\t" + lexer.lexeme + "\n";
+                    break;
+                case cadeiraString:
+                    resultado += "  <Tipo de dado String>\t" + lexer.lexeme + "\n";
+                    break;
+                case T_dado:
+                    resultado += "  <Tipo de dado>\t" + lexer.lexeme + "\n";
+                    break;
+                case If:
+                    resultado += "  <Reservada if>\t" + lexer.lexeme + "\n";
+                    break;
+                case Else:
+                    resultado += "  <Reservada else>\t" + lexer.lexeme + "\n";
+                    break;
+                case Do:
+                    resultado += "  <Reservada do>\t" + lexer.lexeme + "\n";
+                    break;
+                case While:
+                    resultado += "  <Reservada while>\t" + lexer.lexeme + "\n";
+                    break;
+                case For:
+                    resultado += "  <Reservada for>\t" + lexer.lexeme + "\n";
+                    break;
+                case Igual:
+                    resultado += "  <Operador igual>\t" + lexer.lexeme + "\n";
+                    break;
+              
+                case Op_Aritimeticos:
+                    resultado += "  <Operador Aritimeticos >\t" + lexer.lexeme + "\n";
+                    break;
+                case Op_logico:
+                    resultado += "  <Operador logico>\t" + lexer.lexeme + "\n";
+                    break;
+                case Op_incremento:
+                    resultado += "  <Operador incremento>\t" + lexer.lexeme + "\n";
+                    break;
+                case Op_relacional:
+                    resultado += "  <Operador relacional>\t" + lexer.lexeme + "\n";
+                    break;
+                case Op_atribuicao:
+                    resultado += "  <Operador atribuicao>\t" + lexer.lexeme + "\n";
+                    break;
+                case Op_booleano:
+                    resultado += "  <Operador booleano>\t" + lexer.lexeme + "\n";
+                    break;
+                case Paren_A:
+                    resultado += "  <Abertura Parentes>\t" + lexer.lexeme + "\n";
+                    break;
+                case Paren_F:
+                    resultado += "  <Fechamento Parentes>\t" + lexer.lexeme + "\n";
+                    break;
+                case Chave_A:
+                    resultado += "  <Abertura Chave>\t" + lexer.lexeme + "\n";
+                    break;
+                case Chave_F:
+                    resultado += "  <Fechamento Chave>\t" + lexer.lexeme + "\n";
+                    break;
+                case Colchete_A:
+                    resultado += "  <Abertura Colchete>\t" + lexer.lexeme + "\n";
+                    break;
+                case Colchete_F:
+                    resultado += "  <Fechamento Colchete>\t" + lexer.lexeme + "\n";
+                    break;
+                case Ponto_V:
+                    resultado += "  <Ponto e vergula>\t" + lexer.lexeme + "\n";
+                    break;
+                case Identificador:
+                    resultado += "  <Identificador>\t" + lexer.lexeme + "\n";
+                    break;
+                case Numero:
+                    resultado += "  <Numero>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case ERROR:
+                    resultado += "  <Simbolo não definido>\n";
+                    break;
+                default:
+                    resultado += "  < " + lexer.lexeme + " >\n";
+                    break;
+            }
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FrMain.class.getName()).log(Level.SEVERE, null, ex);
