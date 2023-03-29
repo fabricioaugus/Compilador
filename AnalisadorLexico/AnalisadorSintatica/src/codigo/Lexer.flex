@@ -5,7 +5,7 @@ import static codigo.Tokens.*;
 %type Tokens
 L=[a-zA-Z_]+
 D=[0-9]+
-espaco=[ ,\t,\r]+
+espaco=[ \t\r]+
 %{
     public String lexeme;
 %}

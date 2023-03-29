@@ -211,6 +211,7 @@ public class FrMain extends javax.swing.JFrame {
 
         btnArquivo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnArquivo.setText("Abrir Arquivo");
+        btnArquivo.setToolTipText("");
         btnArquivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnArquivoActionPerformed(evt);
