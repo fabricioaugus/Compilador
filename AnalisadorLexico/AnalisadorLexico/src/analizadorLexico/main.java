@@ -9,7 +9,7 @@ public class main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//String lexerFilePath = "CaminhoParaClasseGerarOLexerDoAnalizador";
-                String lexerFilePath ="C:/Users/fabri/Desktop/com/Compilador/AnalisadorLexico/AnalisadorLexico/src/analizadorLexico/Lexer.flex";
+                String lexerFilePath ="CaminhoParaGerarClassQueVaiSerUsadoAnalizador";
 		lexerGenerate(lexerFilePath);
 		
 	}
