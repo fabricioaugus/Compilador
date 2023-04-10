@@ -1,7 +1,1 @@
-COMPILADORES
-    IFSULDEMINAS
-    INICIO
-    texto A = "bom dia"
-    texto B = "dia"
-    texto C = extrair B em A
-    FIM
+teste

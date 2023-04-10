@@ -47,7 +47,7 @@ COMPILADORES                    { lexeme=yytext(); return COMPILADORES; }
 ("=="|"!="|"<="|">="|"<"|">")   { lexeme=yytext(); return OP_RELACIONAL; }
 {LETTER}({LETTER}|{DIGIT})*     {lexeme=yytext(); return VAR;}
 ("(-"{DIGIT}+")")|{DIGIT}+      {lexeme=yytext(); return VAL_INTEIRO;}
-\"[^\"]*\"                      {lexeme=yytext(); return Tokens.VAL_TEXTO; }
+\"[^\"]*\"                      {lexeme=yytext(); return VAL_TEXTO; }
 
 
 
