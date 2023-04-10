@@ -1,0 +1,6 @@
+ COMPILADORES
+    IFSULDEMINAS
+    INICIO
+    texto A = "bom dia"
+    texto B = substituir "bom" por "mau" em A
+    FIM

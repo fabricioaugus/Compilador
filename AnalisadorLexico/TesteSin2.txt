@@ -1,5 +1,0 @@
-int begin(){
-
-int x = 0;
-
-}

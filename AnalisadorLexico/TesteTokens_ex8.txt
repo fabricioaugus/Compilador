@@ -1,0 +1,8 @@
+ COMPILADORES
+    IFSULDEMINAS
+    INICIO
+    texto A = "aaaaaaaaa"
+    enquanto comprimento > 2 em A {
+        A = extrair "a" em A # comentário no código #
+    }    
+    FIM

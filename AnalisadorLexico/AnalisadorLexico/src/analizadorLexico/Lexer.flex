@@ -13,8 +13,8 @@ DIGIT=[0-9]+
 \/\/[^\n]*      	{ /* ignore comments */ }
 [ \t]+          	{ /* ignore whitespace */ }
 \n                              { return QUEBRA_LINHA; }
-(inteiro|booleano|texto)            { lexeme=yytext(); return TIPO_VAR; }
-(true|false)                    { lexeme=yytext(); return VAL_BOOLEANO; }
+(numero|booleano|texto)            { lexeme=yytext(); return TIPO_VAR; }
+(verdade|falso)                    { lexeme=yytext(); return VAL_BOOLEANO; }
 (e|ou)                          { lexeme=yytext(); return OP_LOGICO; }
 ("+" | "-" | "*" | "%")         { lexeme=yytext(); return OP_ARITIMETICOS; }
 ("++" | "--")                   { lexeme=yytext(); return OP_INCREMENTO; }

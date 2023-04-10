@@ -1,0 +1,6 @@
+ COMPILADORES
+    IFSULDEMINAS
+    INICIO
+    texto A = "bom dia"
+    numero B = tamanho A
+    FIM

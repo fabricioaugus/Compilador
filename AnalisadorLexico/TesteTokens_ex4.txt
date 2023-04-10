@@ -1,0 +1,6 @@
+ COMPILADORES
+    IFSULDEMINAS
+    INICIO
+    texto A = "bom dia a todos"
+    texto B = extrair de 5 ate 9 em A
+    FIM

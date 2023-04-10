@@ -1,4 +1,4 @@
-COMPILADORES
+ COMPILADORES
     IFSULDEMINAS
     INICIO
     texto A = "Bom Dia"
