@@ -1,6 +1,1 @@
-COMPILADORES
-    IFSULDEMINAS
-    INICIO
-    texto A = "Bom Dia"
-    booleano X = buscar "bom" em A
-    FIM
+@ 1.2

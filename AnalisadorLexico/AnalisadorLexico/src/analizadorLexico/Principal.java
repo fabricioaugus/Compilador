@@ -4,6 +4,9 @@
  */
 package analizadorLexico;
 
+import analizadorLexico.Telas.ExemplosCodigos;
+import analizadorLexico.Telas.SobreL;
+import analizadorLexico.Telas.TabelaTokens;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,8 +14,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,6 +48,9 @@ public class Principal extends javax.swing.JFrame {
         txtEntrada = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         LimparDigitado = new javax.swing.JButton();
+        AbrirTabelaTokens = new javax.swing.JButton();
+        ExemplosCodigos = new javax.swing.JButton();
+        SobreL = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtResultado = new javax.swing.JTextArea();
@@ -78,6 +87,31 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        AbrirTabelaTokens.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        AbrirTabelaTokens.setText("Tabela Tokens");
+        AbrirTabelaTokens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AbrirTabelaTokensActionPerformed(evt);
+            }
+        });
+
+        ExemplosCodigos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ExemplosCodigos.setText("Exemplo Codigo");
+        ExemplosCodigos.setToolTipText("");
+        ExemplosCodigos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExemplosCodigosActionPerformed(evt);
+            }
+        });
+
+        SobreL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        SobreL.setText("Sobre L");
+        SobreL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SobreLActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -87,35 +121,41 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(45, 45, 45)
-                        .addComponent(btnAnalizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(AbrirTabelaTokens)
+                                .addGap(18, 18, 18)
+                                .addComponent(SobreL)
+                                .addGap(18, 18, 18)
+                                .addComponent(ExemplosCodigos))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(45, 45, 45)
+                                .addComponent(btnAnalizar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(LimparDigitado)))
+                        .addGap(0, 5, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(571, Short.MAX_VALUE)
-                    .addComponent(LimparDigitado)
-                    .addGap(16, 16, 16)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AbrirTabelaTokens, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ExemplosCodigos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SobreL, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(21, 21, 21))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnAnalizar)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAnalizar)
+                            .addComponent(LimparDigitado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(20, 20, 20)
-                    .addComponent(LimparDigitado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(149, Short.MAX_VALUE)))
         );
 
         txtResultado.setColumns(20);
@@ -153,12 +193,12 @@ public class Principal extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(LimparResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -189,158 +229,11 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalizarActionPerformed
-       File arquivo = new File("arquivoTeste.txt");
-       PrintWriter escrever;
-        int cont = 1;
-        try {
-            escrever = new PrintWriter(arquivo);
-            escrever.print(txtEntrada.getText());
-            escrever.close();
-        } catch (FileNotFoundException ex) {
+            try {
+                analizar();
+            }  catch (IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            Reader leitor = new BufferedReader(new FileReader("arquivoTeste.txt"));
-            Lexer lexer = new Lexer(leitor);
-            String resultado = "";
-            while(true){
-                Tokens tokens = lexer.yylex();
-                if(tokens == null){
-                    resultado += "ANALIZADO TODOS TOKENS";
-                    txtResultado.setText(resultado);
-                    return;
-                }
-                switch (tokens) {
-                 case QUEBRA_LINHA:
-                    cont++;
-                    resultado += "LINHA-> \t" + cont + "\n";
-                    break;
-                case TIPO_VAR:
-                    resultado += "  <tipos de variaveis>\t" + lexer.lexeme + "\n";
-                    break;
-                case ASPAS:
-                    resultado += "  <Aspas>\t" + lexer.lexeme + "\n";
-                    break;
-                case VAR:
-                    resultado += "  <Varivavel da Linguagem>\t" + lexer.lexeme + "\n";
-                    break;
-                 case IFSULDEMINAS:
-                    resultado += "  <Palavra Reservada IFSULDEMINAS>\t" + lexer.lexeme + "\n";
-                    break;
-                 case INICIO:
-                    resultado += "  <Palavra Reservada INICIO>\t" + lexer.lexeme + "\n";
-                    break;
-                 case FIM:
-                    resultado += "  <Palavra Reservada FIM>\t" + lexer.lexeme + "\n";
-                    break;
-                 case COMPILADORES:
-                    resultado += "  <Palavra Reservada COMPILADORES>\t" + lexer.lexeme + "\n";
-                    break;
-                 case BUSCAR:
-                    resultado += "  <Palavra Reservada buscar>\t" + lexer.lexeme + "\n";
-                    break;
-                 case EM:
-                    resultado += "  <Palavra Reservada em>\t" + lexer.lexeme + "\n";
-                    break;
-                 case SUBSTITUIR:
-                    resultado += "  <Palavra Reservada substituir>\t" + lexer.lexeme + "\n";
-                    break;
-                 case POR:
-                    resultado += "  <Palavra Reservada por>\t" + lexer.lexeme + "\n";
-                    break;
-                 case EXTRAIR:
-                    resultado += "  <Palavra Reservada extrair>\t" + lexer.lexeme + "\n";
-                    break;
-                 case DE:
-                    resultado += "  <Palavra Reservada de>\t" + lexer.lexeme + "\n";
-                    break;
-                 case ATE:
-                    resultado += "  <Palavra Reservada ate>\t" + lexer.lexeme + "\n";
-                    break;
-                 case COMPRIMENTO:
-                    resultado += "  <Palavra Reservada comprimento>\t" + lexer.lexeme + "\n";
-                    break;
-                 case CONCATENAR:
-                    resultado += "  <Palavra Reservada concatenar>\t" + lexer.lexeme + "\n";
-                    break;
-                 case COMPARAR:
-                    resultado += "  <Palavra Reservada comparar>\t" + lexer.lexeme + "\n";
-                    break;
-                 case COMENTARIO:
-                    resultado += "  <COMENTARIO>\t" + lexer.lexeme + "\n";
-                    break;
-                 case OP_ARITIMETICOS:
-                    resultado += "  <Operadores aritméticos>\t" + lexer.lexeme + "\n";
-                    break;
-                 case OP_ATRIBUICAO:
-                    resultado += "  <Operadores atribuição>\t" + lexer.lexeme + "\n";
-                    break;
-                 case OP_RELACIONAL:
-                    resultado += "  <Operadores Relacionados>\t" + lexer.lexeme + "\n";
-                    break;
-                 case OP_INCREMENTO:
-                    resultado += "  <Operadores Incremento>\t" + lexer.lexeme + "\n";
-                    break;
-                 case OP_LOGICO:
-                    resultado += "  <Operadores lógicos>\t" + lexer.lexeme + "\n";
-                    break;
-                 case ABRE_PARENTESES:
-                    resultado += "  <Abre Parenteses>\t" + lexer.lexeme + "\n";
-                    break;
-                 case FECHA_PARENTESES:
-                    resultado += "  <Fecha Parenteses>\t" + lexer.lexeme + "\n";
-                    break;
-                    
-                 case ABRE_CHAVES:
-                    resultado += "  <Abre Chaves>\t" + lexer.lexeme + "\n";
-                    break;
-                 case FECHA_CHAVES:
-                    resultado += "  <Fecha Chaves>\t" + lexer.lexeme + "\n";
-                    break;
-                 case ABRE_COLCHETES:
-                    resultado += "  <Abre Colchetes>\t" + lexer.lexeme + "\n";
-                    break;
-                 case FECHA_COLCHETES:
-                    resultado += "  <Fecha Colchetes>\t" + lexer.lexeme + "\n";
-                    break;
-                 case  PONTO_VIRGULA:
-                    resultado += "  <Ponto e Virgula>\t" + lexer.lexeme + "\n";
-                    break;
-                 case ENQUANTO:
-                    resultado += "  <Palavra Reservada enquanto>\t" + lexer.lexeme + "\n";
-                    break;
-                 case PARA:
-                    resultado += "  <Palavra Reservada para>\t" + lexer.lexeme + "\n";
-                    break;
-                 case COND_SE:
-                    resultado += "  <Palavra Reservada se>\t" + lexer.lexeme + "\n";
-                    break;
-                 case COND_SENAO:
-                    resultado += "  <Palavra Reservada senao>\t" + lexer.lexeme + "\n";
-                    break;
-                 case VAL_BOOLEANO:
-                    resultado += "  <Valor Booleano>\t" + lexer.lexeme + "\n";
-                    break;
-                 case VAL_INTEIRO:
-                    resultado += "  <Valor Inteiro>\t" + lexer.lexeme + "\n";
-                    break;
-                 case VAL_TEXTO:
-                    resultado += "  <Valor Texto>\t" + lexer.lexeme + "\n";
-                    break;
-                 default:
-                    resultado += "  < " + lexer.lexeme + " >\n";
-                    break;
-	
-                }
-                        
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
     }//GEN-LAST:event_btnAnalizarActionPerformed
 
     private void LimparResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparResultadoActionPerformed
@@ -351,10 +244,26 @@ public class Principal extends javax.swing.JFrame {
          txtEntrada.setText(null);
     }//GEN-LAST:event_LimparDigitadoActionPerformed
 
+    private void AbrirTabelaTokensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirTabelaTokensActionPerformed
+       TabelaTokens tabela = new TabelaTokens();
+       tabela.setVisible(true);
+    }//GEN-LAST:event_AbrirTabelaTokensActionPerformed
+
+    private void ExemplosCodigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExemplosCodigosActionPerformed
+        // TODO add your handling code here:
+        ExemplosCodigos exemplosCodigos = new ExemplosCodigos();
+        exemplosCodigos.setVisible(true);
+    }//GEN-LAST:event_ExemplosCodigosActionPerformed
+
+    private void SobreLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SobreLActionPerformed
+       SobreL sobrel = new SobreL();
+       sobrel.setVisible(true);
+    }//GEN-LAST:event_SobreLActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -387,8 +296,11 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AbrirTabelaTokens;
+    private javax.swing.JButton ExemplosCodigos;
     private javax.swing.JButton LimparDigitado;
     private javax.swing.JButton LimparResultado;
+    private javax.swing.JButton SobreL;
     private javax.swing.JButton btnAnalizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -399,4 +311,157 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextArea txtEntrada;
     private javax.swing.JTextArea txtResultado;
     // End of variables declaration//GEN-END:variables
+
+    private void analizar() throws IOException {
+        File arquivo = new File("arquivoTeste.txt");
+       PrintWriter escrever;
+        int cont = 1;
+        try {
+            escrever = new PrintWriter(arquivo);
+            escrever.print(txtEntrada.getText());
+            escrever.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            Reader leitor = new BufferedReader(new FileReader("arquivoTeste.txt"));
+            Lexer lexer = new Lexer(leitor);
+            String resultado = "";
+            while(true){
+                Tokens tokens = lexer.yylex();
+                if(tokens == null){
+                    resultado += "ANALIZADO TODOS TOKENS";
+                    txtResultado.setText(resultado);
+                    return;
+                }
+               
+                switch (tokens) {
+                case TIPO_VAR:
+                    resultado += "Linha: "+lexer.line+" - Coluna:"+lexer.column+"Token<"+tokens.TIPO_VAR+", "+lexer.lexeme+">" + "\n";
+                    break;
+                case ASPAS:
+                    resultado +=  "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.ASPAS+", "+lexer.lexeme+">" + "\n";
+                    break;
+                case VAR:
+                    resultado +=  "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.VAR+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case IFSULDEMINAS:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.IFSULDEMINAS+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case INICIO:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.INICIO+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case FIM:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.FIM+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case COMPILADORES:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.COMPILADORES+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case BUSCAR:
+                    resultado +=  "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.BUSCAR+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case EM:
+                    resultado +=  "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.EM+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case SUBSTITUIR:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.SUBSTITUIR+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case POR:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.POR+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case EXTRAIR:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.EXTRAIR+", "+lexer.lexeme+">" + "\n";;
+                    break;
+                 case DE:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.DE+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case ATE:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.ATE+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case COMPRIMENTO:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.COMPRIMENTO+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case CONCATENAR:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.CONCATENAR+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case COMPARAR:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.COMPARAR+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case COMENTARIO:
+                    resultado += "  <COMENTARIO>\t" + lexer.lexeme + "\t<Linha>"+lexer.line+"\n";
+                    break;
+                 case OP_ARITIMETICOS:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.OP_ARITIMETICOS+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case OP_ATRIBUICAO:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.OP_ATRIBUICAO+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case OP_RELACIONAL:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.OP_RELACIONAL+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case OP_INCREMENTO:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.OP_INCREMENTO+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case OP_LOGICO:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.OP_LOGICO+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case ABRE_PARENTESES:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.ABRE_PARENTESES+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case FECHA_PARENTESES:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.FECHA_PARENTESES+", "+lexer.lexeme+">" + "\n";
+                    break;
+                    
+                 case ABRE_CHAVES:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.ABRE_CHAVES+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case FECHA_CHAVES:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.FECHA_CHAVES+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case ABRE_COLCHETES:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.ABRE_COLCHETES+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case FECHA_COLCHETES:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.FECHA_COLCHETES+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case  PONTO_VIRGULA:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.PONTO_VIRGULA+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case ENQUANTO:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.ENQUANTO+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case PARA:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.PARA+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case COND_SE:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.COND_SE+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case COND_SENAO:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.COND_SENAO+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case VAL_BOOLEANO:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.VAL_BOOLEANO+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case VAL_INTEIRO:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.VAL_INTEIRO+", "+lexer.lexeme+">" + "\n";
+                    break;
+                 case VAL_TEXTO:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.VAL_TEXTO+", "+lexer.lexeme+">" + "\n";
+                    break;
+                    case ERRO:
+                    resultado += "Linha: "+lexer.line+" - Coluna: "+lexer.column+" Token<"+tokens.ERRO+", "+lexer.lexeme+">" + "\n";
+                    break;
+                   
+                 default:
+                    resultado += "" +lexer.lexeme+ " >\n";
+                    break;
+                } 
+                        
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

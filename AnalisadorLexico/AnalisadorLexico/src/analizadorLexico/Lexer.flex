@@ -1,55 +1,62 @@
 import static analizadorLexico.Tokens.*;
+import java_cup.runtime.*;
 %%
 %class Lexer
 %type Tokens
+%line 
+%column 
+
 LETTER=[a-zA-Z_]+
 DIGIT=[0-9]+
 %{
-    public String lexeme;
+   
+ public String lexeme; 
+ public int line;
+ public int column;   
 %}
+
 %%
 
 
-\/\/[^\n]*      	{ /* ignore comments */ }
-[ \t]+          	{ /* ignore whitespace */ }
-\n                              { return QUEBRA_LINHA; }
-(numero|booleano|texto)            { lexeme=yytext(); return TIPO_VAR; }
-(verdade|falso)                    { lexeme=yytext(); return VAL_BOOLEANO; }
-(e|ou)                          { lexeme=yytext(); return OP_LOGICO; }
-("+" | "-" | "*" | "%")         { lexeme=yytext(); return OP_ARITIMETICOS; }
-("++" | "--")                   { lexeme=yytext(); return OP_INCREMENTO; }
-( "\"" )                        { lexeme=yytext(); return ASPAS; }
-;                               { lexeme=yytext(); return PONTO_VIRGULA; }
-\[                              { lexeme=yytext(); return ABRE_COLCHETES; }
-\]                              { lexeme=yytext(); return FECHA_COLCHETES; }
-\{                              { lexeme=yytext(); return ABRE_CHAVES; }
-\}                              { lexeme=yytext(); return FECHA_CHAVES; }
-\(                              { lexeme=yytext(); return ABRE_PARENTESES; }
-\)                              { lexeme=yytext(); return FECHA_PARENTESES; }
-=                               { lexeme=yytext(); return OP_ATRIBUICAO; }
-senao                       { lexeme=yytext(); return COND_SENAO; }
-se                          { lexeme=yytext(); return COND_SE; }
-para                        { lexeme=yytext(); return PARA; }
-INICIO                      { lexeme=yytext(); return INICIO; }
-FIM                         { lexeme=yytext();  return FIM; }
-buscar                    { lexeme=yytext(); return BUSCAR; }
-em                          { lexeme=yytext(); return EM; }
-substituir                      { lexeme=yytext(); return SUBSTITUIR; }
-por                             { lexeme=yytext(); return POR; }
-extrair                         { lexeme=yytext(); return EXTRAIR; }
-de                              { lexeme=yytext(); return DE; }
-ate                             { lexeme=yytext(); return ATE; }
-comprimento                     { lexeme=yytext(); return COMPRIMENTO; }
-concatenar                      { lexeme=yytext(); return CONCATENAR; }
-comparar                        { lexeme=yytext(); return COMPARAR; }
-IFSULDEMINAS                    { lexeme=yytext(); return IFSULDEMINAS; }
-COMPILADORES                    { lexeme=yytext(); return COMPILADORES; }
-("=="|"!="|"<="|">="|"<"|">")   { lexeme=yytext(); return OP_RELACIONAL; }
-{LETTER}({LETTER}|{DIGIT})*     {lexeme=yytext(); return VAR;}
-("(-"{DIGIT}+")")|{DIGIT}+      {lexeme=yytext(); return VAL_INTEIRO;}
-\"[^\"]*\"                      {lexeme=yytext(); return VAL_TEXTO; }
-
-
-
+("#"(.|\n)*"#" )                { /* ignore comments */ }
+[ \t]+                          { /* ignore whitespace */ }
+\n                              { /* ignore Line */ }
+(numero|booleano|texto)         { lexeme=yytext();line=yyline;column=yycolumn; return TIPO_VAR; }
+(verdade|falso)                 { lexeme=yytext();line=yyline;column=yycolumn; return VAL_BOOLEANO; }
+(e|ou)                          { lexeme=yytext();line=yyline;column=yycolumn; return OP_LOGICO; }
+("+" | "-" | "*" | "%")         { lexeme=yytext();line=yyline;column=yycolumn; return OP_ARITIMETICOS; }
+("++" | "--")                   { lexeme=yytext();line=yyline;column=yycolumn; return OP_INCREMENTO; }
+( "\"" )                        { lexeme=yytext();line=yyline;column=yycolumn; return ASPAS; }
+;                               { lexeme=yytext();line=yyline;column=yycolumn; return PONTO_VIRGULA; }
+\[                              { lexeme=yytext();line=yyline;column=yycolumn; return ABRE_COLCHETES; }
+\]                              { lexeme=yytext();line=yyline;column=yycolumn; return FECHA_COLCHETES; }
+\{                              { lexeme=yytext();line=yyline;column=yycolumn; return ABRE_CHAVES; }
+\}                              { lexeme=yytext();line=yyline;column=yycolumn; return FECHA_CHAVES; }
+\(                              { lexeme=yytext();line=yyline;column=yycolumn; return ABRE_PARENTESES; }
+\)                              { lexeme=yytext();line=yyline;column=yycolumn; return FECHA_PARENTESES; }
+=                               { lexeme=yytext();line=yyline;column=yycolumn; return OP_ATRIBUICAO; }
+senao                           { lexeme=yytext();line=yyline;column=yycolumn; return COND_SENAO; }
+se                              { lexeme=yytext();line=yyline;column=yycolumn; return COND_SE; }
+para                            { lexeme=yytext();line=yyline;column=yycolumn; return PARA; }
+INICIO                          { lexeme=yytext();line=yyline;column=yycolumn; return INICIO; }
+FIM                             { lexeme=yytext();line=yyline;column=yycolumn;  return FIM; }
+buscar                          { lexeme=yytext();line=yyline;column=yycolumn; return BUSCAR; }
+em                              { lexeme=yytext();line=yyline;column=yycolumn; return EM; }
+substituir                      { lexeme=yytext();line=yyline;column=yycolumn; return SUBSTITUIR; }
+enquanto                        { lexeme=yytext();line=yyline;column=yycolumn; return ENQUANTO; }
+por                             { lexeme=yytext();line=yyline;column=yycolumn; return POR; }
+extrair                         { lexeme=yytext();line=yyline;column=yycolumn; return EXTRAIR; }
+de                              { lexeme=yytext();line=yyline;column=yycolumn; return DE; }
+ate                             { lexeme=yytext();line=yyline;column=yycolumn; return ATE; }
+comprimento                     { lexeme=yytext();line=yyline;column=yycolumn; return COMPRIMENTO; }
+concatenar                      { lexeme=yytext();line=yyline;column=yycolumn; return CONCATENAR; }
+comparar                        { lexeme=yytext();line=yyline;column=yycolumn; return COMPARAR; }
+IFSULDEMINAS                    { lexeme=yytext();line=yyline;column=yycolumn; return IFSULDEMINAS; }
+COMPILADORES                    { lexeme=yytext();line=yyline;column=yycolumn; return COMPILADORES; }
+("=="|"!="|"<="|">="|"<"|">")   { lexeme=yytext();line=yyline;column=yycolumn; return OP_RELACIONAL; }
+{LETTER}({LETTER}|{DIGIT})*     { lexeme=yytext();line=yyline;column=yycolumn; return VAR;}
+("(-"{DIGIT}+")")|{DIGIT}+      { lexeme=yytext();line=yyline;column=yycolumn; return VAL_INTEIRO;}
+\"[^\"]*\"                      { lexeme=yytext();line=yyline;column=yycolumn; return VAL_TEXTO; }
+ .                             { lexeme=yytext() ;line=yyline;column=yycolumn; return ERRO;}
 
 

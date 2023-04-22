@@ -1,6 +1,5 @@
 package analizadorLexico;
 public enum Tokens {
-	QUEBRA_LINHA,
 	ASPAS,
 	TIPO_VAR,
 	VAR,
@@ -38,4 +37,5 @@ public enum Tokens {
 	COMPRIMENTO,
 	CONCATENAR,
 	COMPARAR,
+        ERRO
 }
