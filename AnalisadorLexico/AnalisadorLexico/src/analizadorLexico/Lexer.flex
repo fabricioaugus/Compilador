@@ -19,8 +19,8 @@ DIGIT=[0-9]+
 
 
 ("#"(.|\n)*"#" )                { /* ignore comments */ }
-[ \t]+                          { /* ignore whitespace */ }
-\n                              { /* ignore Line */ }
+[ \t\r]+                        { /* ignore whitespace */ }
+[ \n]+                          { /* ignore  line break */  }
 (numero|booleano|texto)         { lexeme=yytext();line=yyline;column=yycolumn; return TIPO_VAR; }
 (verdade|falso)                 { lexeme=yytext();line=yyline;column=yycolumn; return VAL_BOOLEANO; }
 (e|ou)                          { lexeme=yytext();line=yyline;column=yycolumn; return OP_LOGICO; }
@@ -39,7 +39,7 @@ senao                           { lexeme=yytext();line=yyline;column=yycolumn; r
 se                              { lexeme=yytext();line=yyline;column=yycolumn; return COND_SE; }
 para                            { lexeme=yytext();line=yyline;column=yycolumn; return PARA; }
 INICIO                          { lexeme=yytext();line=yyline;column=yycolumn; return INICIO; }
-FIM                             { lexeme=yytext();line=yyline;column=yycolumn;  return FIM; }
+FIM                             { lexeme=yytext();line=yyline;column=yycolumn; return FIM; }
 buscar                          { lexeme=yytext();line=yyline;column=yycolumn; return BUSCAR; }
 em                              { lexeme=yytext();line=yyline;column=yycolumn; return EM; }
 substituir                      { lexeme=yytext();line=yyline;column=yycolumn; return SUBSTITUIR; }
@@ -55,8 +55,6 @@ IFSULDEMINAS                    { lexeme=yytext();line=yyline;column=yycolumn; r
 COMPILADORES                    { lexeme=yytext();line=yyline;column=yycolumn; return COMPILADORES; }
 ("=="|"!="|"<="|">="|"<"|">")   { lexeme=yytext();line=yyline;column=yycolumn; return OP_RELACIONAL; }
 {LETTER}({LETTER}|{DIGIT})*     { lexeme=yytext();line=yyline;column=yycolumn; return VAR;}
-("(-"{DIGIT}+")")|{DIGIT}+      { lexeme=yytext();line=yyline;column=yycolumn; return VAL_INTEIRO;}
+(-{DIGIT}+)|{DIGIT}+            { lexeme=yytext();line=yyline;column=yycolumn; return VAL_INTEIRO;}
 \"[^\"]*\"                      { lexeme=yytext();line=yyline;column=yycolumn; return VAL_TEXTO; }
- .                             { lexeme=yytext() ;line=yyline;column=yycolumn; return ERRO;}
-
-
+ .                              { lexeme=yytext();line=yyline;column=yycolumn; return ERRO;}

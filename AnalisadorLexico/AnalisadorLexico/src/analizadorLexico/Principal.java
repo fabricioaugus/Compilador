@@ -8,16 +8,28 @@ import analizadorLexico.Telas.ExemplosCodigos;
 import analizadorLexico.Telas.SobreL;
 import analizadorLexico.Telas.TabelaTokens;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.net.URI;
+import java.nio.file.FileSystem;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.WatchEvent;
+import java.nio.file.WatchKey;
+import java.nio.file.WatchService;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -48,14 +60,18 @@ public class Principal extends javax.swing.JFrame {
         txtEntrada = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         LimparDigitado = new javax.swing.JButton();
-        AbrirTabelaTokens = new javax.swing.JButton();
-        ExemplosCodigos = new javax.swing.JButton();
-        SobreL = new javax.swing.JButton();
+        abrirArquivo = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtResultado = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         LimparResultado = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuSobre = new javax.swing.JMenu();
+        menuItemSobreL = new javax.swing.JMenuItem();
+        TabelaTokens = new javax.swing.JMenuItem();
+        menuItemExemplosCodigos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,28 +103,19 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        AbrirTabelaTokens.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        AbrirTabelaTokens.setText("Tabela Tokens");
-        AbrirTabelaTokens.addActionListener(new java.awt.event.ActionListener() {
+        abrirArquivo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        abrirArquivo.setText("Abrir Arquivo");
+        abrirArquivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AbrirTabelaTokensActionPerformed(evt);
+                abrirArquivoActionPerformed(evt);
             }
         });
 
-        ExemplosCodigos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ExemplosCodigos.setText("Exemplo Codigo");
-        ExemplosCodigos.setToolTipText("");
-        ExemplosCodigos.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setText("Salvar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExemplosCodigosActionPerformed(evt);
-            }
-        });
-
-        SobreL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        SobreL.setText("Sobre L");
-        SobreL.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SobreLActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -121,30 +128,26 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(AbrirTabelaTokens)
-                                .addGap(18, 18, 18)
-                                .addComponent(SobreL)
-                                .addGap(18, 18, 18)
-                                .addComponent(ExemplosCodigos))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(45, 45, 45)
-                                .addComponent(btnAnalizar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(LimparDigitado)))
+                        .addComponent(jLabel1)
+                        .addGap(45, 45, 45)
+                        .addComponent(btnAnalizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LimparDigitado)
                         .addGap(0, 5, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(abrirArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(26, 26, 26))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AbrirTabelaTokens, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ExemplosCodigos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SobreL, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                    .addComponent(abrirArquivo)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -198,9 +201,44 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(LimparResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        menuSobre.setText("Sobre");
+        menuSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSobreActionPerformed(evt);
+            }
+        });
+
+        menuItemSobreL.setText("Sobre L");
+        menuItemSobreL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemSobreLActionPerformed(evt);
+            }
+        });
+        menuSobre.add(menuItemSobreL);
+
+        TabelaTokens.setText("Tabela de Tokens");
+        TabelaTokens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TabelaTokensActionPerformed(evt);
+            }
+        });
+        menuSobre.add(TabelaTokens);
+
+        menuItemExemplosCodigos.setText("Exemplo Codigo");
+        menuItemExemplosCodigos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemExemplosCodigosActionPerformed(evt);
+            }
+        });
+        menuSobre.add(menuItemExemplosCodigos);
+
+        jMenuBar1.add(menuSobre);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -244,21 +282,57 @@ public class Principal extends javax.swing.JFrame {
          txtEntrada.setText(null);
     }//GEN-LAST:event_LimparDigitadoActionPerformed
 
-    private void AbrirTabelaTokensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirTabelaTokensActionPerformed
-       TabelaTokens tabela = new TabelaTokens();
-       tabela.setVisible(true);
-    }//GEN-LAST:event_AbrirTabelaTokensActionPerformed
-
-    private void ExemplosCodigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExemplosCodigosActionPerformed
+    private void menuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSobreActionPerformed
         // TODO add your handling code here:
-        ExemplosCodigos exemplosCodigos = new ExemplosCodigos();
-        exemplosCodigos.setVisible(true);
-    }//GEN-LAST:event_ExemplosCodigosActionPerformed
+    }//GEN-LAST:event_menuSobreActionPerformed
 
-    private void SobreLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SobreLActionPerformed
+    private void TabelaTokensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TabelaTokensActionPerformed
+        TabelaTokens tabela = new TabelaTokens();
+       tabela.setVisible(true);
+    }//GEN-LAST:event_TabelaTokensActionPerformed
+
+    private void menuItemExemplosCodigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemExemplosCodigosActionPerformed
+            ExemplosCodigos exemplosCodigos = new ExemplosCodigos();
+        exemplosCodigos.setVisible(true);
+    }//GEN-LAST:event_menuItemExemplosCodigosActionPerformed
+
+    private void menuItemSobreLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSobreLActionPerformed
        SobreL sobrel = new SobreL();
        sobrel.setVisible(true);
-    }//GEN-LAST:event_SobreLActionPerformed
+    }//GEN-LAST:event_menuItemSobreLActionPerformed
+
+    private void abrirArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirArquivoActionPerformed
+        File arq = new File("teste.txt");
+        PrintWriter escrever;
+
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(this);
+
+        File arquivo = new File(chooser.getSelectedFile().getAbsolutePath());
+        try{
+
+            String str = new String(Files.readAllBytes(arquivo.toPath()));
+            txtEntrada.setText(str);
+        }catch (FileNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_abrirArquivoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+  File arquivo = new File("arquivoTeste.txt");
+ PrintWriter escrever;
+        try {
+            escrever = new PrintWriter(arquivo);
+            escrever.print(txtEntrada.getText());
+            escrever.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,18 +370,22 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AbrirTabelaTokens;
-    private javax.swing.JButton ExemplosCodigos;
     private javax.swing.JButton LimparDigitado;
     private javax.swing.JButton LimparResultado;
-    private javax.swing.JButton SobreL;
+    private javax.swing.JMenuItem TabelaTokens;
+    private javax.swing.JButton abrirArquivo;
     private javax.swing.JButton btnAnalizar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JMenuItem menuItemExemplosCodigos;
+    private javax.swing.JMenuItem menuItemSobreL;
+    private javax.swing.JMenu menuSobre;
     private javax.swing.JTextArea txtEntrada;
     private javax.swing.JTextArea txtResultado;
     // End of variables declaration//GEN-END:variables
@@ -336,6 +414,7 @@ public class Principal extends javax.swing.JFrame {
                 }
                
                 switch (tokens) {
+                   
                 case TIPO_VAR:
                     resultado += "Linha: "+lexer.line+" - Coluna:"+lexer.column+"Token<"+tokens.TIPO_VAR+", "+lexer.lexeme+">" + "\n";
                     break;
