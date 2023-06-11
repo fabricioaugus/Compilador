@@ -1,9 +1,9 @@
  COMPILADORES
     IFSULDEMINAS
     INICIO
-    texto A = "Bom Dia"
-    numero contador = 0
-    para contador ate 10 {
-        contador += 1
+    texto A = "Bom Dia";
+    numero contador = 0;
+    para (contador ate 10) {
+        contador += 1;
     }
     FIM

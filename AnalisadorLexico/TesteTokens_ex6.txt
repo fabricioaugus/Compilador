@@ -1,14 +1,14 @@
  COMPILADORES
     IFSULDEMINAS
     INICIO
-    texto A = "Bom Dia"
-    texto B = ""
-    booleano X = buscar "bom" em A
+    texto A = "Bom Dia";
+    texto B = "";
+    booleano X = buscar "bom" em A;
     
-    se X {
-        B = substituir "bom" por "mau" em A
+    se (X) {
+        B = substituir "bom" por "mau" em A;
     } senao {
-        B = extrair "Olá" de 5 ate 9 em "Olá, mundo!"
+        B = extrair "Olá" de 5 ate 9 em "Olá, mundo!";
     }
 
 

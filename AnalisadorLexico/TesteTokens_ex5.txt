@@ -1,6 +1,6 @@
  COMPILADORES
     IFSULDEMINAS
     INICIO
-    texto A = "Bom Dia"
-    booleano X = buscar "bom" em A
+    texto A = "Bom Dia";
+    booleano X = buscar "bom" em A;
     FIM
