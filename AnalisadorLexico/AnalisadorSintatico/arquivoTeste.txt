@@ -1,7 +1,6 @@
-COMPILADORES
-IFSULDEMINAS
-INICIO
-texto A = "bom dia";
-texto B = "dia";
-texto C = extrair B em A;
-FIM
+ COMPILADORES
+    IFSULDEMINAS
+    INICIO
+    texto A = "Bom Dia";
+    booleano X = buscar "bom" em A;
+    FIM

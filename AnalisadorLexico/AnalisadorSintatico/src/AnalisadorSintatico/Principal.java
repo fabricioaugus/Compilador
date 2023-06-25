@@ -96,7 +96,9 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
 
+        LimparResultado.setBackground(new java.awt.Color(255, 99, 71));
         LimparResultado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LimparResultado.setForeground(new java.awt.Color(255, 255, 255));
         LimparResultado.setText("Limpar");
         LimparResultado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +106,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        btnAnalizar.setBackground(new java.awt.Color(0, 0, 0));
         btnAnalizar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnAnalizar.setForeground(new java.awt.Color(255, 255, 255));
         btnAnalizar.setText("Analizar");
         btnAnalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,7 +155,9 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
 
+        LimparAnalizarSin.setBackground(new java.awt.Color(255, 99, 71));
         LimparAnalizarSin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LimparAnalizarSin.setForeground(new java.awt.Color(255, 255, 255));
         LimparAnalizarSin.setText("Limpar");
         LimparAnalizarSin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,7 +165,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        btnAnalizarSin.setBackground(new java.awt.Color(0, 0, 0));
         btnAnalizarSin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnAnalizarSin.setForeground(new java.awt.Color(255, 255, 255));
         btnAnalizarSin.setText("Analizar Sin");
         btnAnalizarSin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,7 +210,9 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        btnSalvar.setBackground(new java.awt.Color(0, 128, 180));
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,7 +227,9 @@ public class Principal extends javax.swing.JFrame {
         txtEntrada.setRows(5);
         jScrollPane1.setViewportView(txtEntrada);
 
+        LimparDigitado.setBackground(new java.awt.Color(255, 99, 71));
         LimparDigitado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LimparDigitado.setForeground(new java.awt.Color(255, 255, 255));
         LimparDigitado.setText("Limpar");
         LimparDigitado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,7 +237,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        abrirArquivo.setBackground(new java.awt.Color(0, 128, 50));
         abrirArquivo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        abrirArquivo.setForeground(new java.awt.Color(255, 255, 255));
         abrirArquivo.setText("Abrir Arquivo");
         abrirArquivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
